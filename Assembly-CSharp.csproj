@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8C33489F-256F-7336-4A5E-FBD78D90283D}</ProjectGuid>
+    <ProjectGuid>{592FCD5B-50BE-273D-18D0-B68B09E95919}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AddictionControlller.cs" />
+     <Compile Include="Assets\Scripts\LevelBlock7Controller.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerLook.cs" />
      <None Include="Assets\Abandoned_Asylum\Read_me.txt" />

@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private GameObject flashlight;
 	private CharacterController charController;
 
+	public LevelBlock7Controller levelBloco7;
+
 
 	// Use this for initialization
 	void Start () {
@@ -51,4 +53,33 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnCollisionEnter(Collision c){
+		print (c.gameObject.tag);
+		if (c.gameObject.tag == "LevelBlockBloco7") {
+			levelBloco7.TurnObjectsOn ();
+			print ("entrou");
+		}
+	}
+
+	void OnTriggerEnter(Collider c){
+		print (c.gameObject.tag);
+		if (c.gameObject.tag == "LevelBlockBloco7") {
+			levelBloco7.TurnObjectsOn ();
+			print ("entrou");
+		}
+	}
+
+	void OnTriggerExit(Collider c){
+		print (c.gameObject.tag);
+		levelBloco7.PlayerIsIn = false;
+		print ("saiu");
+	}
+
+	/* void onTriggerEnter(Collider c){
+		if (c.gameObject.tag == "LevelBlockBloco7") {
+			levelBloco7.TurnObjectsOn ();
+			print ("entrou");
+		}
+	}*/
 }
