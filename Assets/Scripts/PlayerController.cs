@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private GameObject flashlight;
 	private CharacterController charController;
 
-	public LevelBlock7Controller levelBloco7;
+	public LevelBlock7Controller[] levelBloco7;
+
+	private bool clicou = false;
 
 
 	// Use this for initialization
@@ -22,6 +24,12 @@ public class PlayerController : MonoBehaviour {
 
 		PlayerMovement ();
 		ToggleFlashlight ();
+
+		if (Input.GetButton ("Fire1")) {
+			clicou = true;
+			print (clicou);
+		}
+		clicou = false;
 
 
 
@@ -55,28 +63,71 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision c){
-		print (c.gameObject.tag);
-		if (c.gameObject.tag == "LevelBlockBloco7") {
-			levelBloco7.TurnObjectsOn ();
-			print ("entrou");
+		print ("Collision Tag : " + c.gameObject.tag);
+		if (c.collider.gameObject.tag == "Door") {
+			c.collider.SendMessage ("Use");
 		}
 	}
 
+	void OnTriggerStay(Collider c){
+		print ("Collider Tag : " + c.gameObject.tag);
+		if (c.gameObject.tag == "LevelBlockBloco7") {
+			foreach(LevelBlock7Controller x in levelBloco7){
+				if (x == c.gameObject.GetComponent<LevelBlock7Controller>()) {
+					print ("TAROLANDO");
+					x.PlayerIsIn = true;
+				}
+			}
+
+			print ("entrou");
+		}
+		if (c.gameObject.tag == "Door")  {
+			if (Input.GetButton ("Fire1")) {
+				print ("clicou");
+				c.gameObject.SendMessage ("Use", SendMessageOptions.RequireReceiver);
+			}
+		}
+		if (c.gameObject.tag == "1") {
+
+		}
+		if (c.gameObject.tag == "2") {
+
+		}
+		if (c.gameObject.tag == "3") {
+
+		}
+	}
 	void OnTriggerEnter(Collider c){
 		print (c.gameObject.tag);
 		if (c.gameObject.tag == "LevelBlockBloco7") {
-			levelBloco7.TurnObjectsOn ();
+			foreach(LevelBlock7Controller x in levelBloco7){
+				if (x == c.gameObject.GetComponent<LevelBlock7Controller>()) {
+					print ("TAROLANDO");
+					x.TurnObjectsOn();
+				}
+			}
+
 			print ("entrou");
 		}
 	}
 
 	void OnTriggerExit(Collider c){
 		print (c.gameObject.tag);
-		levelBloco7.PlayerIsIn = false;
+
+		if (c.gameObject.tag == "LevelBlockBloco7") {
+			foreach(LevelBlock7Controller x in levelBloco7){
+				if (x == c.gameObject.GetComponent<LevelBlock7Controller>()) {
+					print ("TAROLANDO");
+					x.PlayerIsIn = false;;
+				}
+			}
+
+			print ("entrou");
+		}
 		print ("saiu");
 	}
 
-	/* void onTriggerEnter(Collider c){
+	/*void onTriggerEnter(Collider c){
 		if (c.gameObject.tag == "LevelBlockBloco7") {
 			levelBloco7.TurnObjectsOn ();
 			print ("entrou");

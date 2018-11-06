@@ -12,6 +12,7 @@ TagManager:
   - LevelBlockBlocoEntrada
   - LevelBlockBlocoLab2
   - LevelBlockBlocoEngSoft
+  - Door
   layers:
   - Default
   - TransparentFX
